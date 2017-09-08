@@ -30,7 +30,9 @@ CRGB leds[NUM_LEDS];
 
 #define CLEARBUTTON 16
 
-//enum status 
+#include "task.h"
+
+task task1( 23, 24, 10, 2 );
 
 
 /******************************************
@@ -54,7 +56,6 @@ void setup() {
   
   timeClient.begin();
   
-  
 }
 
 /******************************************
@@ -64,7 +65,7 @@ void loop() {
 
   timeClient.update();  //make sure this doesn't happen too often
 
-  leds[0] = CHSV( HUE_RED, 100, 100 );
+  task1.updateTask();
 
   Serial.println( timeClient.getHours() );
   Serial.println( timeClient.getDay() );
